@@ -173,18 +173,6 @@ quarto render Predictive_Customer_Analytics_for_Banking_Campaigns.qmd
 
 ---
 
-## 👤 Author
-
-**Oluwatoyin Alli, MSc, MBA**  
-Business & Operations Analyst | Data Analytics | Business Intelligence  
-📍 Denver, CO  
-🔗 [LinkedIn](https://www.linkedin.com/in/toyinib/)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 
