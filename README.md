@@ -23,11 +23,13 @@ The insights enable data-driven **customer segmentation**, **targeted campaign d
 ##  Business Questions
 
 ### Quantitative Analysis (Regression)
+
 a. Which numerical demographic and campaign factors significantly predict a customer's average account balance?
 b. How do age, contact duration, campaign frequency, days since last contact, and prior interactions influence bank balances?
 c. Can we accurately predict a customer's bank balance using quantitative variables from demographic profiles and past campaign data?
 
 ### Qualitative Analysis (Classification)
+
 a. What categorical factors most influence a customer's decision to subscribe to a term deposit?
 b. How do loan status, housing status, marital status, and job type impact subscription likelihood?
 c. Can we accurately classify customers as likely subscribers based on categorical demographic and campaign attributes?
