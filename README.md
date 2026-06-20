@@ -1,4 +1,4 @@
-# 🏦 Predictive Customer Analytics for Banking Campaigns
+#  Predictive Customer Analytics for Banking Campaigns
 
 > **Predicting Bank Customer Behavior: A Data-Driven Approach to Campaign Effectiveness and Customer Segmentation**
 
