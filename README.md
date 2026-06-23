@@ -25,7 +25,7 @@ The core problem this project addresses is twofold. First, the bank lacks a reli
 ##  Project Objectives & Business Questions
 
 This project pursues two primary analytical objectives:
-###  Objective 1
+####  Objective 1
 Quantitative Analysis: Predicting Account Balance
 To identify the demographic and campaign factors that significantly predict a customer's average account balance, and to determine which regression model best captures those relationships.
 
@@ -33,7 +33,7 @@ Which numerical variables: age, contact duration, campaign frequency, days since
 Do non-linear relationships exist between predictors and balance, and does accounting for them improve model performance?
 Which model: Multiple Linear Regression, Lasso Tuned Regression, or GAM produces the most accurate balance predictions?
 
-###  Objective 2 
+####  Objective 2 
 Qualitative Analysis: Predicting Term Deposit Subscription
 To identify the categorical and demographic factors that influence a customer's decision to subscribe to a term deposit, and to determine which classification model best predicts subscription likelihood.
 
