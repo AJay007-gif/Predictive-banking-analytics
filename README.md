@@ -31,7 +31,7 @@ To identify the demographic and campaign factors that significantly predict a cu
 
 Which numerical variables: age, contact duration, campaign frequency, days since last contact, and prior interactions significantly predict account balance?
 Do non-linear relationships exist between predictors and balance, and does accounting for them improve model performance?
-Which model — Multiple Linear Regression, Lasso Tuned Regression, or GAM produces the most accurate balance predictions?
+Which model: Multiple Linear Regression, Lasso Tuned Regression, or GAM produces the most accurate balance predictions?
 
 ###  Objective 2 
 Qualitative Analysis: Predicting Term Deposit Subscription
