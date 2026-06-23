@@ -16,12 +16,11 @@ This project applies predictive analytics to a real-world banking dataset collec
 The analysis is structured across two analytical tracks. The first track is the quantitative analysis; using Multiple Linear Regression, Lasso Tuned Regression, and Generalized Additive Models (GAM) to identify and predict the factors influencing individual account balances. The second track is the qualitative analysis using Logistic Regression, Tuned Random Forest, and Tuned Gradient Boosted Models to classify customers likely to subscribe to a term deposit. Together, these two tracks provide a comprehensive, data-driven view of customer behavior that can directly inform campaign strategy, customer segmentation, and resource allocation.
 
 
-
 ##  Problem Statement
 
+Banks operating direct marketing campaigns frequently struggle to answer critical performance questions in real time. Which customers are financially valuable? Who is likely to respond to a product offer? Without predictive modeling, marketing teams rely on broad demographic assumptions, historical averages, and manual segmentation; approaches that are slow, inconsistent, and increasingly inadequate in a data-rich environment.
+The core problem this project addresses is twofold. First, the bank lacks a reliable model to predict individual account balances from customer demographic and campaign data thus limiting its ability to identify and prioritize high-value customers. Second, without a classification model, the bank cannot efficiently predict which customers are likely to subscribe to a term deposit, resulting in wasted campaign resources and missed revenue opportunities. This project addresses both gaps through rigorous statistical modeling and machine learning.
 
-
----
 
 ##  Project Objectives & Business Questions
 
