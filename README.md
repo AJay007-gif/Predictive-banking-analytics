@@ -44,21 +44,86 @@ Which model: Logistic Regression, Tuned Random Forest, or Tuned Gradient Boosted
 
 ##  Data Description
 
+The dataset used in this project is the Bank Marketing Dataset sourced from the UCI Machine Learning Repository. It was collected from direct marketing phone campaigns conducted by a Portuguese banking institution between 2008 and 2013. The dataset contains 45,211 records and 17 variables capturing customer demographics, financial attributes, and campaign-related information. The outcome variables are account balance (continuous, used for regression) and subscription status (binary: yes/no, used for classification).
+
+**Dataset Summary**
+
+| Attribute | Description |
+|------------|------------|
+| Source | UCI Machine Learning Repository |
+| Domain | Banking & Marketing |
+| Records | 45,211 |
+| Variables | 17 |
+| Period | 2008–2013 |
+| Regression Target | Balance (Account Balance) |
+| Classification Target | y (Term Deposit Subscription) |
 
 
+**Variable Description**
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| age | Numerical | Customer's age in years |
+| balance | Numerical | Average annual account balance in euros (Regression Target) |
+| duration | Numerical | Duration of the last contact in seconds |
+| campaign | Numerical | Number of contacts made during the current campaign |
+| previous | Numerical | Number of contacts made before the current campaign |
+| day | Numerical | Day of the month of the last contact |
+| job | Categorical | Type of employment |
+| marital | Categorical | Marital status |
+| education | Categorical | Education level |
+| default | Categorical | Has credit in default? (Yes/No) |
+| housing | Categorical | Has housing loan? (Yes/No) |
+| loan | Categorical | Has personal loan? (Yes/No) |
+| contact | Categorical | Communication type used |
+| month | Categorical | Month of the last contact |
+| poutcome | Categorical | Outcome of the previous marketing campaign |
+| y | Categorical | Subscribed to term deposit? (Yes/No) – Classification Target |
 
 
----
+**Target Variables**
+
+| Analysis Type | Target Variable | Description |
+|--------------|----------------|-------------|
+| Multiple Linear Regression | balance | Predict customer account balance |
+| Classification Models | y | Predict whether a customer subscribes to a term deposit |
+
+
+###  Data Preparation & Cleaning
+
+**Cleaning steps**
+
+a. Checked for and confirmed no missing values across all variables
+b. Removed duplicate records to ensure model integrity
+c. Encoded categorical variables as factors for model compatibility
+d. Identified and assessed outliers in the balance variable — extreme values were retained as they reflect real customer financial variation
+e. Applied an 80/20 train/test split for model training and evaluation across both analytical tracks
+
 
 ## Exploratory Data Analysis & Visualization
 
-a. Descriptive statistics and dataset summaries
-b. Correlation analysis and heatmaps
-c. Pairwise plots for multicollinearity assessment
-d. Histograms and bar plots for variable distributions
+####  Descriptive Statistics
+Initial exploration of the dataset revealed several important patterns. The average account balance showed considerable variation across customers, with a small proportion holding significantly higher balances than the majority indicating a right-skewed distribution. Contact duration varied widely, suggesting that some campaign interactions were substantially more engaged than others. The majority of customers in the dataset did not subscribe to the term deposit, confirming a class imbalance in the outcome variable that was accounted for in the classification modeling strategy.
 
 
----
+####  Key Visualizations & Insights
+
+**Distribution of Account Balance**
+The balance variable showed a strongly right-skewed distribution, with most customers holding modest balances and a small number holding very large balances. This pattern motivated the use of GAM alongside linear models, as non-linear modeling better captures such distributional characteristics.
+
+**Subscription Rate by Job Type**
+Subscription rates varied noticeably across job categories. Retired customers and students showed higher subscription rates relative to their proportion in the dataset, while blue-collar workers showed the lowest rates suggesting that occupation is a meaningful segmentation variable for campaign targeting.
+
+**Correlation Heatmap**
+The correlation analysis among numerical variables revealed moderate positive correlations between previous campaign contacts and subscription likelihood, and between contact duration and balance. No severe multicollinearity was detected among predictors, supporting the validity of the regression models.
+
+**Balance by Subscription Status**
+Customers who subscribed to the term deposit tended to have higher average account balances than non-subscribers, suggesting that financial stability may be a contributing factor in the subscription decision.
+
+**Class Imbalance**
+Approximately 88% of customers in the dataset did not subscribe, compared to 12% who did. This significant imbalance informed the choice of evaluation metrics prioritizing AUC, sensitivity, and optimal threshold analysis over simple accuracy and motivated the use of ensemble models better suited to imbalanced classification problems.
+
+
 
 ##  Quantitative Analysis — Predicting Account Balance
 
@@ -70,6 +135,22 @@ d. Histograms and bar plots for variable distributions
 | Generalized Linear Model (GLM) | Non-normal distribution handling |
 
 **Evaluation Metrics:** RMSE, R², Residual Diagnostics, VIF, Actual vs. Predicted plots, Variable Importance
+
+####  Model 1 — Multiple Linear Regression
+Multiple Linear Regression was used as the baseline model for predicting account balance. This model estimates the linear relationship between a set of demographic and campaign predictors and the continuous outcome variable average account balance. As the foundational regression approach, it provides an interpretable benchmark against which more complex models are evaluated.
+The model was trained on the regression dataset using all available numerical predictors. Residual diagnostic plots were examined to assess assumptions of normality, homoscedasticity, and independence. Variable Inflation Factor (VIF) scores confirmed no severe multicollinearity among predictors.
+**Key findings:** Contact duration and the number of previous campaign contacts emerged as statistically significant positive predictors of account balance. Campaign frequency showed a negative relationship, suggesting that customers contacted more frequently during the current campaign tended to have lower balances possibly indicating lower-value targeting.
+
+####  Model 2 — Lasso Tuned Regression
+Lasso Regression was applied to address the risk of overfitting present in the baseline model and to perform automatic feature selection. By adding a regularization penalty (lambda) that shrinks less important variable coefficients toward zero, Lasso identifies only the most influential predictors of account balance producing a leaner, more generalizable model.
+The optimal lambda value was selected through cross-validation. Variables with low predictive contribution were removed from the model, reducing dimensionality and improving out-of-sample performance.
+**Key findings:** Lasso confirmed the significance of duration and previous contacts while removing weaker predictors, producing a more parsimonious model with comparable or improved predictive accuracy relative to the MLR baseline.
+
+###  Model 3 — Generalized Additive Model (GAM)
+GAM was employed to capture non-linear relationships between predictors and account balance that the linear models could not accommodate. Rather than fitting straight lines, GAM fits smooth curves to each predictor, allowing the model to flexibly represent the true shape of each relationship.
+This approach was particularly motivated by the right-skewed distribution of balance and the expectation that variables like age and campaign frequency would exhibit non-linear effects. for example, balance may increase with age up to a point before plateauing or declining.
+**Key findings:** GAM smooth term plots revealed meaningful non-linear patterns in several predictors. Age showed a curved relationship with balance, and contact duration exhibited a non-linear positive effect. GAM produced improved fit statistics compared to the linear baseline, validating the non-linear modeling approach.
+
 
 ##  Qualitative Analysis — Predicting Term Deposit Subscription
 
