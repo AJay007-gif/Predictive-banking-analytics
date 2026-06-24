@@ -136,6 +136,7 @@ Significant pairwise correlations were found between Balance and Duration, and a
 
 ![Subscription Distribution](figures/03_subscription_distribution.png)
 
+!03_subscription_distribution.png
 
 
 ##  Quantitative Analysis — Predicting Account Balance
