@@ -131,6 +131,13 @@ Multicollinearity is not a significant concern, with VIF scores close to 1 acros
 ![Correlation Heatmap](figures/correlation_heatmap.png)
 
 
+**Pairwise Plot:**
+Significant pairwise correlations were found between Balance and Duration, and a weak negative correlation between Balance and Campaign (-0.085). These relationships are consistent with the expectation that longer, more meaningful contacts correlate with higher-value customers.
+
+![Subscription Distribution](figures/03_subscription_distribution.png)
+
+
+
 ##  Quantitative Analysis — Predicting Account Balance
 
 ### Regression Models (Predicting Account Balance)
