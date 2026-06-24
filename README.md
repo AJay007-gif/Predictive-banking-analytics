@@ -93,36 +93,42 @@ The dataset used in this project is the Bank Marketing Dataset sourced from the 
 
 **Cleaning steps**
 
-1. Checked for and confirmed no missing values across all variables
-2. Removed duplicate records to ensure model integrity
-3. Encoded categorical variables as factors for model compatibility
-4. Identified and assessed outliers in the balance variable — extreme values were retained as they reflect real customer financial variation
-5. Applied an 80/20 train/test split for model training and evaluation across both analytical tracks
+1. Loaded dataset and standardized column names using "clean_names()"
+2. Removed all rows with missing values using "na.omit()"
+3. Confirmed zero duplicate records
+4. Encoded the target variable y as a factor with levels yes / no
+5. Applied "SMOTE" oversampling to address class imbalance in the classification dataset
+6. Normalized all numeric predictors and encoded categorical variables as dummy variables using "recipe()" and "bake()"
+7. Applied a "60/40" train/test split for both analytical tracks
 
 
 ## Exploratory Data Analysis & Visualization
 
-####  Descriptive Statistics
-Initial exploration of the dataset revealed several important patterns. The average account balance showed considerable variation across customers, with a small proportion holding significantly higher balances than the majority indicating a right-skewed distribution. Contact duration varied widely, suggesting that some campaign interactions were substantially more engaged than others. The majority of customers in the dataset did not subscribe to the term deposit, confirming a class imbalance in the outcome variable that was accounted for in the classification modeling strategy.
+###  Dataset Overview
+
+The dataset captures customer demographics, financial profile, and campaign engagement history. Key summary statistics include:
+
+1. **Age:** ranges from 18 to 95 years, median of 39
+2. **Balance:** ranges from 0 to 102,127 euros, mean of 1,415 and median of 485; strongly right-skewed
+3. **Duration:** ranges from 0 to 4,918 seconds, mean of 258.2 and median of 180
+4. **Campaign:** most customers were contacted a small number of times; the variable is right-skewed with a few high-frequency outliers
 
 
-####  Key Visualizations & Insights
+###  Key Findings from Visualizations
 
-**Distribution of Account Balance**
-The balance variable showed a strongly right-skewed distribution, with most customers holding modest balances and a small number holding very large balances. This pattern motivated the use of GAM alongside linear models, as non-linear modeling better captures such distributional characteristics.
+**Histograms (Numeric Variable Distributions):**
+All numeric variables exhibit right-skewed distributions, particularly balance and previous. This skewness suggests that variable transformation may improve model performance and that outliers at higher balance values could influence predictions — a pattern confirmed in the regression modeling results.
 
-**Subscription Rate by Job Type**
-Subscription rates varied noticeably across job categories. Retired customers and students showed higher subscription rates relative to their proportion in the dataset, while blue-collar workers showed the lowest rates suggesting that occupation is a meaningful segmentation variable for campaign targeting.
+**Correlation Heatmap:**
+The correlation matrix revealed low to moderate correlations among numeric variables, with the strongest relationships observed between:
 
-**Correlation Heatmap**
-The correlation analysis among numerical variables revealed moderate positive correlations between previous campaign contacts and subscription likelihood, and between contact duration and balance. No severe multicollinearity was detected among predictors, supporting the validity of the regression models.
+1. Balance and Age
+2. Balance and Duration
+3. Previous and Campaign
 
-**Balance by Subscription Status**
-Customers who subscribed to the term deposit tended to have higher average account balances than non-subscribers, suggesting that financial stability may be a contributing factor in the subscription decision.
+Multicollinearity is not a significant concern, with VIF scores close to 1 across all predictors — supporting the validity of the regression models.
 
-**Class Imbalance**
-Approximately 88% of customers in the dataset did not subscribe, compared to 12% who did. This significant imbalance informed the choice of evaluation metrics prioritizing AUC, sensitivity, and optimal threshold analysis over simple accuracy and motivated the use of ensemble models better suited to imbalanced classification problems.
-
+![Correlation Heatmap](figures/correlation_heatmap.png)
 
 
 ##  Quantitative Analysis — Predicting Account Balance
@@ -148,7 +154,7 @@ The optimal lambda value was selected through cross-validation. Variables with l
 
 **Key findings:** Lasso confirmed the significance of duration and previous contacts while removing weaker predictors, producing a more parsimonious model with comparable or improved predictive accuracy relative to the MLR baseline.
 
-###  Model 3 — Generalized Additive Model (GAM)
+####  Model 3 — Generalized Additive Model (GAM)
 GAM was employed to capture non-linear relationships between predictors and account balance that the linear models could not accommodate. Rather than fitting straight lines, GAM fits smooth curves to each predictor, allowing the model to flexibly represent the true shape of each relationship.
 This approach was particularly motivated by the right-skewed distribution of balance and the expectation that variables like age and campaign frequency would exhibit non-linear effects. for example, balance may increase with age up to a point before plateauing or declining.
 
