@@ -44,7 +44,7 @@ Which model: Logistic Regression, Tuned Random Forest, or Tuned Gradient Boosted
 
 ##  Data Description
 
-The dataset used in this project is the Bank Marketing Dataset sourced from the UCI Machine Learning Repository. It was collected from direct marketing phone campaigns conducted by a Portuguese banking institution between 2008 and 2013. The dataset contains 45,211 records and 17 variables capturing customer demographics, financial attributes, and campaign-related information. The outcome variables are account balance (continuous, used for regression) and subscription status (binary: yes/no, used for classification).
+The dataset used in this project is the Bank Marketing Dataset sourced from the UCI Machine Learning Repository. It was collected from direct marketing phone campaigns conducted by a Portuguese banking institution between 2008 and 2013. The dataset contains 45,211 records and 16 variables capturing customer demographics, financial attributes, and campaign-related information. The outcome variables are account balance (continuous, used for regression) and subscription status (binary: yes/no, used for classification).
 
 **Dataset Summary**
 
@@ -53,7 +53,7 @@ The dataset used in this project is the Bank Marketing Dataset sourced from the 
 | Source | UCI Machine Learning Repository |
 | Domain | Banking & Marketing |
 | Records | 45,211 |
-| Variables | 17 |
+| Variables | 16 |
 | Period | 2008–2013 |
 | Regression Target | Balance (Account Balance) |
 | Classification Target | y (Term Deposit Subscription) |
@@ -93,11 +93,11 @@ The dataset used in this project is the Bank Marketing Dataset sourced from the 
 
 **Cleaning steps**
 
-a. Checked for and confirmed no missing values across all variables
-b. Removed duplicate records to ensure model integrity
-c. Encoded categorical variables as factors for model compatibility
-d. Identified and assessed outliers in the balance variable — extreme values were retained as they reflect real customer financial variation
-e. Applied an 80/20 train/test split for model training and evaluation across both analytical tracks
+1. Checked for and confirmed no missing values across all variables
+2. Removed duplicate records to ensure model integrity
+3. Encoded categorical variables as factors for model compatibility
+4. Identified and assessed outliers in the balance variable — extreme values were retained as they reflect real customer financial variation
+5. Applied an 80/20 train/test split for model training and evaluation across both analytical tracks
 
 
 ## Exploratory Data Analysis & Visualization
@@ -139,16 +139,19 @@ Approximately 88% of customers in the dataset did not subscribe, compared to 12%
 ####  Model 1 — Multiple Linear Regression
 Multiple Linear Regression was used as the baseline model for predicting account balance. This model estimates the linear relationship between a set of demographic and campaign predictors and the continuous outcome variable average account balance. As the foundational regression approach, it provides an interpretable benchmark against which more complex models are evaluated.
 The model was trained on the regression dataset using all available numerical predictors. Residual diagnostic plots were examined to assess assumptions of normality, homoscedasticity, and independence. Variable Inflation Factor (VIF) scores confirmed no severe multicollinearity among predictors.
+
 **Key findings:** Contact duration and the number of previous campaign contacts emerged as statistically significant positive predictors of account balance. Campaign frequency showed a negative relationship, suggesting that customers contacted more frequently during the current campaign tended to have lower balances possibly indicating lower-value targeting.
 
 ####  Model 2 — Lasso Tuned Regression
 Lasso Regression was applied to address the risk of overfitting present in the baseline model and to perform automatic feature selection. By adding a regularization penalty (lambda) that shrinks less important variable coefficients toward zero, Lasso identifies only the most influential predictors of account balance producing a leaner, more generalizable model.
 The optimal lambda value was selected through cross-validation. Variables with low predictive contribution were removed from the model, reducing dimensionality and improving out-of-sample performance.
+
 **Key findings:** Lasso confirmed the significance of duration and previous contacts while removing weaker predictors, producing a more parsimonious model with comparable or improved predictive accuracy relative to the MLR baseline.
 
 ###  Model 3 — Generalized Additive Model (GAM)
 GAM was employed to capture non-linear relationships between predictors and account balance that the linear models could not accommodate. Rather than fitting straight lines, GAM fits smooth curves to each predictor, allowing the model to flexibly represent the true shape of each relationship.
 This approach was particularly motivated by the right-skewed distribution of balance and the expectation that variables like age and campaign frequency would exhibit non-linear effects. for example, balance may increase with age up to a point before plateauing or declining.
+
 **Key findings:** GAM smooth term plots revealed meaningful non-linear patterns in several predictors. Age showed a curved relationship with balance, and contact duration exhibited a non-linear positive effect. GAM produced improved fit statistics compared to the linear baseline, validating the non-linear modeling approach.
 
 
