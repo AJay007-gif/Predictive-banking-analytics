@@ -145,6 +145,9 @@ Job type distribution shows most customers are in management, blue-collar, or te
 
 ##  Quantitative Analysis — Predicting Account Balance
 
+***Why These Models?***
+Regression models were selected to address the quantitative business objective: predicting a continuous numerical outcome (account balance) from demographic and campaign predictors. Three models of increasing complexity were evaluated to identify the best approach for this dataset.
+
 ### Regression Models (Predicting Account Balance)
 | Model | Purpose |
 |---|---|
@@ -226,6 +229,9 @@ Winner: GAM — lowest RMSE and MAE, highest R²
 
 ##  Qualitative Analysis — Predicting Term Deposit Subscription
 
+***Why These Models?***
+Classification models were selected to address the qualitative business objective: predicting a binary outcome (subscribed: yes/no) from demographic and campaign variables. The dataset's class imbalance (majority non-subscribers) required SMOTE preprocessing before modeling. Three models were evaluated from baseline to ensemble.
+
 ### Classification Models (Predicting Term Deposit Subscription)
 | Model | Purpose |
 |---|---|
@@ -240,7 +246,22 @@ b. **Classification:** Random Forest and Gradient Boosted Trees outperformed Log
 c. **ROC-AUC analysis** with optimal threshold tuning improved model sensitivity for identifying high-probability subscribers
 d. **Variable Importance Plots** revealed job type, housing loan status, and contact duration as the most influential classification features
 
----
+#### Data Preprocessing for Classification
+Before modeling, the classification dataset was preprocessed using a recipe() pipeline:
+1. Normalized all numeric predictors
+2. Encoded all categorical predictors as dummy variables
+3. Removed zero-variance predictors
+4. Applied SMOTE (Synthetic Minority Oversampling Technique) with over_ratio = 0.5 to address class imbalance
+5. Split into 60% training / 40% test sets using stratified sampling
+
+#### Model 1 — Logistic Regression
+Establish a baseline classification model providing interpretable odds ratios and probability estimates for subscription.
+Standard logistic regression fitted on the full SMOTE-balanced training dataset using all available predictors.
+
+**Key Findings:**
+1. Provided a solid baseline with good accuracy
+2. Duration and campaign were the strongest predictors of subscription
+3. Less effective at capturing complex variable interactions compared to ensemble models
 
 ##  Discussion
 
