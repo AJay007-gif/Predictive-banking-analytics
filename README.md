@@ -158,20 +158,71 @@ Job type distribution shows most customers are in management, blue-collar, or te
 Multiple Linear Regression was used as the baseline model for predicting account balance. This model estimates the linear relationship between a set of demographic and campaign predictors and the continuous outcome variable average account balance. As the foundational regression approach, it provides an interpretable benchmark against which more complex models are evaluated.
 The model was trained on the regression dataset using all available numerical predictors. Residual diagnostic plots were examined to assess assumptions of normality, homoscedasticity, and independence. Variable Inflation Factor (VIF) scores confirmed no severe multicollinearity among predictors.
 
-**Key findings:** Contact duration and the number of previous campaign contacts emerged as statistically significant positive predictors of account balance. Campaign frequency showed a negative relationship, suggesting that customers contacted more frequently during the current campaign tended to have lower balances possibly indicating lower-value targeting.
+#### Results
+
+| Metric | Value |
+|---------|-------:|
+| RMSE | 3,004.647 |
+| R² | 0.010 |
+| MAE | 1,505.722 |
+
+**Key findings:** 
+1. All predictors were statistically significant (p < 0.05), no pruning required
+2. VIF values close to 1 confirmed no multicollinearity
+3. Age emerged as the most important predictor by variable importance score
+4. Residual diagnostics revealed heteroscedasticity and non-normal residuals, suggesting the linear model does not fully capture the data's structure
+5. The actual vs. predicted plot showed predictions clustered at low balance values, with poor accuracy for high-balance customers
 
 ####  Model 2 — Lasso Tuned Regression
 Lasso Regression was applied to address the risk of overfitting present in the baseline model and to perform automatic feature selection. By adding a regularization penalty (lambda) that shrinks less important variable coefficients toward zero, Lasso identifies only the most influential predictors of account balance producing a leaner, more generalizable model.
 The optimal lambda value was selected through cross-validation. Variables with low predictive contribution were removed from the model, reducing dimensionality and improving out-of-sample performance.
 
-**Key findings:** Lasso confirmed the significance of duration and previous contacts while removing weaker predictors, producing a more parsimonious model with comparable or improved predictive accuracy relative to the MLR baseline.
+#### Results
+
+| Metric | Value |
+|---------|-------:|
+| RMSE | 3,050.961 |
+| R² | 0.008 |
+| MAE | 1,505.330 |
+| Best Lambda | 0.01 |
+
+**Key findings:** 
+1. The optimal lambda of 0.01 indicates a minimal penalty was sufficient, suggesting the predictors were already relatively clean
+2. Age remained the dominant predictor — its coefficient stayed large even as lambda increased and other coefficients shrunk toward zero
+3. The coefficient path plot confirmed that previous, duration, campaign, and day progressively lose influence as regularization increases
+4. Performance was marginally weaker than the MLR baseline, suggesting overfitting was not the primary issue and the dataset may lack key predictors
 
 ####  Model 3 — Generalized Additive Model (GAM)
 GAM was employed to capture non-linear relationships between predictors and account balance that the linear models could not accommodate. Rather than fitting straight lines, GAM fits smooth curves to each predictor, allowing the model to flexibly represent the true shape of each relationship.
 This approach was particularly motivated by the right-skewed distribution of balance and the expectation that variables like age and campaign frequency would exhibit non-linear effects. for example, balance may increase with age up to a point before plateauing or declining.
 
-**Key findings:** GAM smooth term plots revealed meaningful non-linear patterns in several predictors. Age showed a curved relationship with balance, and contact duration exhibited a non-linear positive effect. GAM produced improved fit statistics compared to the linear baseline, validating the non-linear modeling approach.
+#### Results
 
+| Metric | Value |
+|---------|-------:|
+| RMSE | 2,998.206 |
+| R² | 0.015 |
+| MAE | 1,499.370 |
+
+**Key findings:** 
+1. GAM achieved the best performance across all three metrics — lowest RMSE, highest R², and lowest MAE
+2. Smooth term plots revealed meaningful non-linear patterns:
+- Age shows an exponential increase with balance — the relationship is not linear
+- Duration has a positive near-linear effect on balance
+- Campaign shows a slight upward trend with high variation at larger values
+- Day exhibits a cyclical pattern with peaks on specific days
+- Previous shows a steep drop after a certain threshold — diminishing returns from repeated contacts
+3. Despite being the best model, the overall R² of 0.015 indicates the predictors in this dataset explain very little of the variance in balance — suggesting other key variables (income, credit score, etc.) are missing
+
+## Regression Model Comparison
+
+| Model | RMSE | R² | MAE | Key Strength |
+|-------|-----:|---:|----:|--------------|
+| Multiple Linear Regression | 3,004.647 | 0.010 | 1,505.722 | Interpretable baseline model |
+| Lasso Regression | 3,050.961 | 0.008 | 1,505.330 | Performs feature selection through regularization |
+| Generalized Additive Model (GAM) ⭐ | **2,998.206** | **0.015** | **1,499.378** | Captures non-linear relationships between predictors and account balance |
+
+Winner: GAM — lowest RMSE and MAE, highest R²
 
 ##  Qualitative Analysis — Predicting Term Deposit Subscription
 
