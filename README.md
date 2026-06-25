@@ -117,7 +117,7 @@ The dataset captures customer demographics, financial profile, and campaign enga
 ###  Key Findings from Visualizations
 
 **Histograms (Numeric Variable Distributions):**
-All numeric variables exhibit right-skewed distributions, particularly balance and previous. This skewness suggests that variable transformation may improve model performance and that outliers at higher balance values could influence predictions — a pattern confirmed in the regression modeling results.
+All numeric variables exhibit right-skewed distributions, particularly balance and previous. This skewness suggests that variable transformation may improve model performance and that outliers at higher balance values could influence predictions; a pattern confirmed in the regression modeling results.
 
 **Correlation Heatmap:**
 The correlation matrix revealed low to moderate correlations among numeric variables, with the strongest relationships observed between:
@@ -126,16 +126,21 @@ The correlation matrix revealed low to moderate correlations among numeric varia
 2. Balance and Duration
 3. Previous and Campaign
 
-Multicollinearity is not a significant concern, with VIF scores close to 1 across all predictors — supporting the validity of the regression models.
+Multicollinearity is not a significant concern, with VIF scores close to 1 across all predictors supporting the validity of the regression models.
 
 ![Correlation Heatmap](figures/correlation_heatmap.png)
-
 
 **Pairwise Plot:**
 Significant pairwise correlations were found between Balance and Duration, and a weak negative correlation between Balance and Campaign (-0.085). These relationships are consistent with the expectation that longer, more meaningful contacts correlate with higher-value customers.
 
 ![Subscription Distribution](figures/03_subscription_distribution.png)
 
+**Bar Plots — Categorical Variables:**
+The target variable y is heavily imbalanced, the majority of customers did not subscribe, requiring SMOTE resampling before classification modeling
+The poutcome variable contains a large "unknown" category that may introduce noise
+Job type distribution shows most customers are in management, blue-collar, or technician roles
+
+![Job Type Distribution](figures/03c_job_distribution.png)
 
 
 ##  Quantitative Analysis — Predicting Account Balance
