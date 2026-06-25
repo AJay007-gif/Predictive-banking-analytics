@@ -247,7 +247,7 @@ c. **ROC-AUC analysis** with optimal threshold tuning improved model sensitivity
 d. **Variable Importance Plots** revealed job type, housing loan status, and contact duration as the most influential classification features
 
 #### Data Preprocessing for Classification
-Before modeling, the classification dataset was preprocessed using a recipe() pipeline:
+Before modeling, the classification dataset was preprocessed using a "recipe()" pipeline:
 1. Normalized all numeric predictors
 2. Encoded all categorical predictors as dummy variables
 3. Removed zero-variance predictors
@@ -262,6 +262,18 @@ Standard logistic regression fitted on the full SMOTE-balanced training dataset 
 1. Provided a solid baseline with good accuracy
 2. Duration and campaign were the strongest predictors of subscription
 3. Less effective at capturing complex variable interactions compared to ensemble models
+
+#### Model 2 — Tuned Random Forest
+Capture complex interactions between variables through ensemble tree-based modeling, with hyperparameter tuning to optimize performance.
+Random Forest with mtry and trees tuned via 3-fold cross-validation over a grid of values. Final model parameters: mtry = 19, trees = 1,000. Variable importance measured using impurity.
+
+**Key Findings:**
+1. Outperformed Logistic Regression across all metrics
+2. Variable importance plot identified duration and campaign as the top predictors of subscription
+3. Month appeared as the least significant predictor
+4. Strong ROC curve indicating excellent discrimination between subscribers and non-subscribers
+
+![Variable Importance — Random Forest](figures/05_vip_randomforest.png)
 
 ##  Discussion
 
