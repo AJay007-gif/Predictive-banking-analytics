@@ -300,40 +300,54 @@ All three models achieved similar performance at ~92% accuracy.
 
 ![ROC Curves — All Classification Models](figures/07_roc_curves.png)
 
-
+Gradient Boosted Models achieved near-identical, near-perfect curves — both are recommended for deployment. Logistic Regression, while performing well, showed a slightly lower ROC curve.
 
 ##  Discussion
+**Regression Results:**
+GAMs proved to be the most effective regression model, achieving the lowest RMSE (2,998.206) and highest R² (0.015) among the three models. The non-linear modeling approach confirmed that account balance does not follow a straight-line relationship with predictors, particularly age, which showed an exponential growth pattern. However, the overall R² values across all regression models were very low, indicating that the available predictors explain very little of the variance in account balance. This strongly suggests that key variables such as customer income, credit history, and savings behavior are absent from the dataset and would be necessary to build a reliable balance prediction model.
 
+**Classification Results:**
+The Tuned Random Forest and Tuned Gradient Boosted Models both achieved strong classification performance, with accuracy of 0.92, sensitivity of 0.87, and specificity of 0.94. The near-identical ROC curves for these two models confirm that both are equally capable of distinguishing between subscribers and non-subscribers. Duration and campaign consistently emerged as the most significant predictors of subscription, while month contributed the least. The application of SMOTE was critical in addressing class imbalance and ensuring the models did not simply favor the majority non-subscriber class.
 
----
+**Combined Insight:**
+Age is the most influential predictor of account balance, while duration and campaign frequency are the strongest drivers of subscription likelihood. Customers who engage in longer calls and have been contacted fewer times during a campaign are significantly more likely to subscribe suggesting that quality of interaction matters more than quantity of outreach. Taken together, the two models enable the bank to target customers who are both financially valuable (high predicted balance) and engagement-ready (high subscription probability).
+
+**Limitations:**
+All three regression models produced very low R² values, suggesting the dataset lacks key financial predictors necessary for accurate balance prediction
+The dataset originates from a Portuguese bank (2008–2013) and may not generalize to other markets or time periods, particularly given the 2008 financial crisis context
+The large "unknown" category in poutcome and job may introduce noise into classification predictions
+Class imbalance in y required SMOTE intervention — results may differ on naturally balanced or differently distributed datasets
 
 ##  Conclusion
+This project successfully addressed two core business challenges through a dual analytical framework. For account balance prediction, GAMs achieved the best performance (RMSE: 2,998.206, R²: 0.015), confirming non-linear relationships between predictors and balance — with age emerging as the dominant factor. For term deposit subscription classification, both Tuned Random Forest and Tuned Gradient Boosted Models achieved 92% accuracy with an AUC near 1.0, identifying contact duration and campaign frequency as the strongest drivers of subscription likelihood.
 
----
+While the regression models revealed meaningful patterns, the low R² values suggest that additional financial variables would be needed to build a production-ready balance predictor. The classification models, however, demonstrated strong real-world applicability — providing the bank with a reliable tool to identify and prioritize likely subscribers before campaign outreach begins.
 
 ##  Business Impact
 
-| Insight | Actionable Recommendation |
-|---|---|
-| Contact duration is a strong predictor | Prioritize longer, quality engagements over volume |
-| Job type and loan status drive subscription | Segment campaigns by employment and financial profile |
-| High campaign frequency reduces conversion | Reduce contact frequency; focus on high-probability leads |
-| Prior interactions signal interest | Re-target customers with previous positive engagements |
+| Finding | Business Recommendation |
+|---------|--------------------------|
+| **Duration** is the strongest predictor of term deposit subscription. | Prioritize high-quality, longer customer engagements over high-volume, short-duration calls. |
+| Higher **campaign frequency** is associated with lower conversion rates. | Reduce excessive contact frequency and focus marketing efforts on high-probability prospects. |
+| **Age** exhibits a non-linear relationship with account balance. | Develop age-based customer segmentation strategies rather than relying on linear assumptions. |
+| **Previous campaign contacts** demonstrate diminishing predictive value. | Re-target customers with positive prior campaign outcomes while limiting repeated outreach to non-responsive customers. |
+| Classification models achieved approximately **92% accuracy**. | Deploy the best-performing ensemble model to pre-score customer lists before marketing campaigns. |
+| **SMOTE** improved minority class detection and model performance. | Apply class balancing techniques when working with future imbalanced marketing datasets to improve prediction of minority outcomes. |
 
----
 
-## 🛠️ Tools & Technologies
+##  Tools & Technologies
 
-| Tool | Use |
-|---|---|
-| **R** | Core analysis and modeling |
-| **tidyverse** | Data wrangling and visualization |
-| **tidymodels** | Model training, tuning, and evaluation |
-| **randomForest / xgboost** | Ensemble and boosted models |
-| **glmnet** | Lasso regularization |
-| **ggplot2** | Data visualization |
-| **Quarto** | Reproducible reporting |
+| Category | Tools / Technologies |
+|----------|----------------------|
+| **Programming Language** | R |
+| **Modeling Framework** | tidymodels, parsnip, workflows, tune, rsample, yardstick |
+| **Regression Models** | Multiple Linear Regression (`lm`), Lasso Regression (`glmnet`), Generalized Additive Models (`mgcv`, `mgcViz`) |
+| **Classification Models** | Logistic Regression (`glm`), Random Forest (`ranger`), Gradient Boosting (`xgboost`) |
+| **Class Imbalance Handling** | `themis` (SMOTE) |
+| **Data Wrangling** | `dplyr`, `tidyverse`, `janitor`, `recipes`, `skimr` |
+| **Data Visualization** | `ggplot2`, `GGally`, `ggcorrplot`, `vip`, `gridExtra` |
+| **Reporting & Documentation** | Quarto Dashboard, GitHub README |
 
----
+
 
 
