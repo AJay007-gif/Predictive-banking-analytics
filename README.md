@@ -288,6 +288,19 @@ Gradient Boosted Trees with mtry, trees, tree_depth, learn_rate, and loss_reduct
 ![Variable Importance — Gradient Boosted Model](figures/08_vip_gradientboosted.png)
 
 
+## Classification Model Comparison
+
+| Model | Accuracy | Sensitivity | Specificity | Precision |
+|--------|---------:|------------:|------------:|-----------:|
+| Logistic Regression | 0.92 | 0.87 | 0.94 | 0.89 |
+| Tuned Random Forest | 0.92 | 0.87 | 0.94 | 0.89 |
+| Tuned Gradient Boosted Model (XGBoost) | 0.92 | 0.87 | 0.94 | 0.89 |
+
+All three models achieved similar performance at ~92% accuracy.
+
+![ROC Curves — All Classification Models](figures/07_roc_curves.png)
+
+
 
 
 ##  Discussion
