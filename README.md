@@ -275,6 +275,21 @@ Random Forest with mtry and trees tuned via 3-fold cross-validation over a grid 
 
 ![Variable Importance — Random Forest](figures/05_vip_randomforest.png)
 
+
+#### Model 3 — Tuned Gradient Boosted Forest
+Apply sequential boosting to correct prediction errors iteratively, achieving the highest possible classification accuracy on this imbalanced dataset.
+Gradient Boosted Trees with mtry, trees, tree_depth, learn_rate, and loss_reduction tuned via cross-validation. Final parameters: mtry = 22, trees = 200, tree_depth = 11, learn_rate ≈ 4.33e-07. Optimal classification threshold determined using ROC threshold analysis.
+
+**Key Findings:**
+1. Achieved performance comparable to Tuned Random Forest
+2. Optimal threshold analysis improved sensitivity — identifying more true subscribers than the default 0.5 cutoff
+3. Confirmed duration and campaign as the dominant predictors
+
+![Variable Importance — Gradient Boosted Model](figures/08_vip_gradientboosted.png)
+
+
+
+
 ##  Discussion
 
 
