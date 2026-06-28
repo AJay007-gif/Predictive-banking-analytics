@@ -38,7 +38,7 @@ The bank also lacks a predictive model to identify customers most likely to subs
 
 **Business Risks of Inaction**
 
-**Without a predictive analytics solution, the organization risks:**
+Without a predictive analytics solution, the organization risks:
 
 1. Spending marketing budgets on low-probability customers.
 2. Overlooking high-value customers due to limited financial profiling.
