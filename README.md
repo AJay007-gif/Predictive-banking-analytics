@@ -28,11 +28,11 @@ Without predictive analytics, marketing teams often rely on broad demographic as
 
 **This project addresses two key business challenges:**
 
-**Gap 1 — Lack of an Account Balance Prediction Model*
+**Gap 1: Lack of an Account Balance Prediction Model*
 
 The bank lacks a reliable method for predicting individual customer account balances using demographic and campaign data. As a result, high-value customers cannot be identified and prioritized effectively before marketing campaigns begin.
 
-**Gap 2 — Lack of a Subscription Prediction Model*
+**Gap 2: Lack of a Subscription Prediction Model*
 
 The bank also lacks a predictive model to identify customers most likely to subscribe to a term deposit. Without this capability, marketing campaigns target large customer groups indiscriminately, leading to unnecessary contact costs, inefficient use of marketing resources, and missed revenue opportunities.
 
