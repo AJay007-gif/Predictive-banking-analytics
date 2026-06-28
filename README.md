@@ -9,17 +9,54 @@
 
 ---
 
-##  Introduction
+##  Overview
 
-Direct marketing campaigns are one of the primary tools banks use to acquire new customers and promote financial products. However, without data-driven targeting, these campaigns are costly and inefficient. Reaching thousands of customers who are unlikely to respond while missing those who would. The ability to predict customer behavior before launching a campaign is therefore a significant competitive advantage.
-This project applies predictive analytics to a real-world banking dataset collected from direct marketing phone campaigns conducted by a Portuguese bank. Using a combination of regression and classification models, this project investigates two core dimensions of customer behavior: what drives a customer's account balance, and what predicts their likelihood of subscribing to a term deposit product.
-The analysis is structured across two analytical tracks. The first track is the quantitative analysis; using Multiple Linear Regression, Lasso Tuned Regression, and Generalized Additive Models (GAM) to identify and predict the factors influencing individual account balances. The second track is the qualitative analysis using Logistic Regression, Tuned Random Forest, and Tuned Gradient Boosted Models to classify customers likely to subscribe to a term deposit. Together, these two tracks provide a comprehensive, data-driven view of customer behavior that can directly inform campaign strategy, customer segmentation, and resource allocation.
+Banks invest heavily in direct marketing campaigns to promote financial products, but broad customer targeting often leads to low conversion rates and inefficient use of marketing resources. Applying predictive analytics and machine learning to identify the factors influencing customer account balances and predict which customers are most likely to subscribe to a term deposit enables organizations to make more informed, data-driven marketing decisions. Through the application and comparison of multiple regression and classification models, this project generates actionable insights that improve customer segmentation, optimize campaign strategies, and enhance the effectiveness of marketing resource allocation.
+
+The findings demonstrate how predictive analytics, supported by machine learning techniques, can enable more targeted customer engagement, improve campaign performance, and provide a scalable framework for data-driven decision-making in the banking sector.
+
+##  Business Problem
+
+The success of direct marketing campaigns depends on an organization's ability to identify high-value customers and accurately predict which customers are most likely to respond to a product offer. This raises two critical business questions:
+
+Which customers are financially valuable?
+Which customers are most likely to subscribe to a term deposit?
+
+To address these questions, this project develops and evaluates predictive analytics solutions that estimate customer account balances and predict term deposit subscriptions using demographic and campaign data.
+
+Without predictive analytics, marketing teams often rely on broad demographic assumptions, historical averages, and manual customer segmentation. These approaches are time-consuming, inconsistent, and increasingly ineffective in today's data-driven business environment, resulting in inefficient resource allocation and lower campaign effectiveness.
+
+**This project addresses two key business challenges:**
+
+**Gap 1 — Lack of an Account Balance Prediction Model*
+
+The bank lacks a reliable method for predicting individual customer account balances using demographic and campaign data. As a result, high-value customers cannot be identified and prioritized effectively before marketing campaigns begin.
+
+**Gap 2 — Lack of a Subscription Prediction Model*
+
+The bank also lacks a predictive model to identify customers most likely to subscribe to a term deposit. Without this capability, marketing campaigns target large customer groups indiscriminately, leading to unnecessary contact costs, inefficient use of marketing resources, and missed revenue opportunities.
+
+**Business Risks of Inaction**
+
+**Without a predictive analytics solution, the organization risks:**
+
+1. Spending marketing budgets on low-probability customers.
+2. Overlooking high-value customers due to limited financial profiling.
+3. Contacting customers too frequently or at ineffective intervals.
+4. Lacking a data-driven approach to prioritize and segment marketing campaigns.
+
+   
+##  Analytical Workflow
+
+##  Business Insights 
+
+##  Business Recommendations
+
+##  Business Impact
+
+##  Technical Appendix
 
 
-##  Problem Statement
-
-Banks operating direct marketing campaigns frequently struggle to answer critical performance questions in real time. Which customers are financially valuable? Who is likely to respond to a product offer? Without predictive modeling, marketing teams rely on broad demographic assumptions, historical averages, and manual segmentation; approaches that are slow, inconsistent, and increasingly inadequate in a data-rich environment.
-The core problem this project addresses is twofold. First, the bank lacks a reliable model to predict individual account balances from customer demographic and campaign data thus limiting its ability to identify and prioritize high-value customers. Second, without a classification model, the bank cannot efficiently predict which customers are likely to subscribe to a term deposit, resulting in wasted campaign resources and missed revenue opportunities. This project addresses both gaps through rigorous statistical modeling and machine learning.
 
 
 ##  Project Objectives & Business Questions
