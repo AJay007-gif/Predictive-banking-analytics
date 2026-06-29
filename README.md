@@ -48,6 +48,28 @@ Without a predictive analytics solution, the organization risks:
    
 ##  Analytical Workflow
 
+📥 Data Collection
+        ↓
+🧹 Data Preparation
+        ↓
+📊 Exploratory Analysis
+        ↓
+⚙️ Feature Engineering
+        ↓
+         ┌───────────────┐
+         │               │
+         ▼               ▼
+Regression        Classification
+         │               │
+         └───────┬───────┘
+                 ▼
+📈 Model Evaluation
+        ↓
+💡 Business Insights
+        ↓
+📋 Recommendations
+
+
 ##  Business Insights 
 
 ##  Business Recommendations
