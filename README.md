@@ -52,15 +52,15 @@ Without a predictive analytics solution, the organization risks:
 
 ##  Business Insights 
 
-*From the Regression Track — What drives account balance?*
+*From the Regression Track: What drives account balance?*
 
 1. Age is the dominant predictor of account balance and the relationship is exponential, not linear. Balance grows slowly in younger customers and accelerates significantly with age. Linear models systematically underestimate balance for older customers.
 2. Contact duration has a positive effect on balance, customers who engage in longer interactions tend to have higher balances, suggesting that engagement quality reflects financial capacity.
 3. High campaign frequency correlates with lower balance, customers contacted more aggressively during campaigns tend to hold lower balances, suggesting the bank may already be over-targeting lower-value segments.
 4. Previous contacts show diminishing returns beyond a certain threshold, prior contacts no longer add predictive value for balance, indicating saturation effects in outreach.
-5. The low R² across all regression models (max 0.015) signals that key financial variables — income, credit score, savings history — are absent from the dataset and would be essential for a production-ready balance predictor.
+5. The low R² across all regression models (max 0.015) signals that key financial variables; income, credit score, savings history are absent from the dataset and would be essential for a production-ready balance predictor.
 
-*From the Classification Track — What drives subscription?*
+*From the Classification Track: What drives subscription?*
 
 1. Duration is the single strongest predictor of subscription by a wide margin. A longer call duration signals genuine customer interest and is the clearest leading indicator of a likely subscriber.
 2. Campaign frequency negatively impacts subscription likelihood, customers contacted fewer times during the current campaign are more likely to subscribe. Over-contacting actively reduces conversion.
