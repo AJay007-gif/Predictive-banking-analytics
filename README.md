@@ -48,7 +48,7 @@ Without a predictive analytics solution, the organization risks:
    
 ##  Analytical Workflow
 
-![End-to-End Predictive Analytics Workflow](figures/analytical_workflow.png)
+analytical_workflow.png
 
 ##  Business Insights 
 
