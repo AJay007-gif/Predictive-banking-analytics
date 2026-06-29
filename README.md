@@ -74,7 +74,7 @@ Without a predictive analytics solution, the organization risks:
 Duration is the strongest subscription predictor. Train campaign teams to focus on meaningful, extended conversations rather than maximizing the number of contacts made per day. A single high-quality call outperforms multiple short contacts.
 
 2. Implement contact frequency caps
-High campaign frequency is negatively associated with subscription. Set a maximum contact limit per customer per campaign cycle — 2 to 3 contacts is likely optimal. Beyond this threshold, additional contacts reduce rather than increase conversion probability.
+High campaign frequency is negatively associated with subscription. Set a maximum contact limit per customer per campaign cycle 2 to 3 contacts is likely optimal. Beyond this threshold, additional contacts reduce rather than increase conversion probability.
 
 3. Build an age-based customer segmentation model
 Account balance grows exponentially with age, not linearly. Retire flat demographic segmentation and replace it with age-tier segments that reflect the non-linear accumulation patterns identified by the GAM model.
